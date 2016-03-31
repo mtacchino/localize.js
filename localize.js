@@ -16,6 +16,10 @@ var Localize = (function() {
     var translationLang = lang || navigator.language || navigator.userLanguage || (navigator.languages ? navigator.languages[0] : defaultLang),
         elems = Array.prototype.slice.call(document.querySelectorAll('[' + keyword + ']'));
 
+    if (Localize) {
+      Localize.currentLang = lang;
+    }
+    
     getTranslations(translationLang, function(translations) {
       elems.forEach(function(elem) {
         var key = elem.getAttribute(keyword);
@@ -63,6 +67,7 @@ var Localize = (function() {
 
   translate(defaultLang);
   return {
-    translate: translate
-  }
+    translate: translate,
+    currentLang: defaultLang
+  };
 })();
