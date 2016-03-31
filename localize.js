@@ -1,20 +1,24 @@
 
-(function() {
-  function Localize(keyword, path, defaultLang) {
-    this.translations = {};
-    this.keyword = keyword || 'translate';
-    this.path = path || '/translations/';
-    this.defaultLang = defaultLang || 'en';
-  }
+var Localize = (function() {
+    var scripts = document.getElementsByTagName('script');
+    var localizeScript = scripts[scripts.length - 1];
 
-  Localize.prototype.translate = function(lang) {
-    var object = this,
-        translationLang = lang || navigator.language || navigator.userLanguage || (navigator.languages ? navigator.languages[0] : defaultLang),
-        elems = Array.prototype.slice.call(document.querySelectorAll('[' + this.keyword + ']'));
+    var keyword = localizeScript.getAttribute('keyword') || 'translate',
+        path = localizeScript.getAttribute('path') || '/translations/',
+        defaultLang = localizeScript.getAttribute('default-lang') || 'en',
+        translations = {};
 
-    this.getTranslations(translationLang, function(translations) {
+  /**
+   * Translates the page using the specified language
+   * @param {String} lang
+   */
+  function translate(lang) {
+    var translationLang = lang || navigator.language || navigator.userLanguage || (navigator.languages ? navigator.languages[0] : defaultLang),
+        elems = Array.prototype.slice.call(document.querySelectorAll('[' + keyword + ']'));
+
+    getTranslations(translationLang, function(translations) {
       elems.forEach(function(elem) {
-        var key = elem.getAttribute(object.keyword);
+        var key = elem.getAttribute(keyword);
         if (translations[key]) {
           elem.innerHTML = translations[key];
         }
@@ -22,11 +26,15 @@
     });
   };
 
-  Localize.prototype.getTranslations = function(lang, cb) {
-    var object = this;
+  /**
+   * Retrieve translations object from a JSON file
+   * @param {String} lang
+   * @param {function(Object)} cb
+   */
+   function getTranslations(lang, cb) {
 
-    if (object.translations && object.translations[lang]){
-      cb(object.translations[lang]);
+    if (translations[lang]){
+      cb(translations[lang]);
       return;
     }
 
@@ -45,22 +53,16 @@
           }
         }
         else if (xhttp.status == 200) {
-          object.translations[lang] = JSON.parse(xhttp.responseText);
-          cb(object.translations[lang]);
+          translations[lang] = JSON.parse(xhttp.responseText);
+          cb(translations[lang]);
           return;
         }
       }
     };
   }
 
-
-
-  var scripts = document.getElementsByTagName('script');
-  var localizeScript = scripts[scripts.length-1];
-  var keyword = localizeScript.getAttribute('keyword'),
-      path = localizeScript.getAttribute('path'),
-      defaultLang = localizeScript.getAttribute('default-lang');
-
-  window.Localize = new Localize(keyword, path, defaultLang);
-  window.Localize.translate(defaultLang);
+  translate(defaultLang);
+  return {
+    translate: translate
+  }
 })();
