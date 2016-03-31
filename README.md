@@ -1,5 +1,5 @@
 # localize.js
-An easy-to-use client-side javascript plugin for localizing/translating/internationalizing your website. Languages are lazy-loaded so only the required language is retrieved when it's needed.
+An easy-to-use client-side javascript plugin for localizing/translating/internationalizing your website. Languages are lazy-loaded so only the required language is retrieved when it's needed. No dependencies required.
 
 ## Basic Usage
 Insert the localize.js script at the bottom of your HTML file. In your HTML, add a `translate` attribute along with an identifying key to all of the elements that need to be translated. Call the `Localize.translate(language)` function to translate the page:
