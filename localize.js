@@ -58,7 +58,7 @@
   var scripts = document.getElementsByTagName('script');
   var localizeScript = scripts[scripts.length-1];
   var keyword = localizeScript.getAttribute('keyword'),
-      path = localizeScript.getAttribute('translations-path'),
+      path = localizeScript.getAttribute('path'),
       defaultLang = localizeScript.getAttribute('default-lang');
 
   window.Localize = new Localize(keyword, path, defaultLang);
