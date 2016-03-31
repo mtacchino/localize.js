@@ -33,6 +33,8 @@ JSON files should have a basic key-value structure like:
 }
 ```
 
+See the [example](https://github.com/mtacchino/localize.js/tree/master/example) folder for a demo.
+
 ## Attribute Options
 There are three attributes which can be included in the script tag:
 
