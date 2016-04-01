@@ -1,0 +1,61 @@
+html, body {
+  background-color: #000;
+}
+
+.window-centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  text-align: center;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+  line-height: 25px;
+}
+
+h1,h2,h3,h4,h5,h6,p, button {
+  color: #EEE;
+  font-family: Tahoma, Geneva, sans-serif;
+  letter-spacing: 4px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #DDD;
+  outline: 0;
+  background-color: #000;
+  margin:5px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #222;
+}
+
+button:active {
+  cursor: pointer;
+  background-color: #333;
+}
+
+.fade-in {
+  opacity: 1;
+  -webkit-transition: 0.5s ease-out opacity;
+  -moz-transition: 0.5s ease-out opacity;
+  -o-transition: 0.5s ease-out opacity;
+  transition: 0.5s ease-out opacity;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+[disabled] {
+  color: #00CCFF;
+}
+
+[disabled]:hover {
+  cursor: default;
+  background-color: inherit;
+}

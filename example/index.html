@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Localize!</title>
+  <title>Localize.js</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <h1 translate="example.header"></h1>
-  <p translate="example.body"></p>
-  <button onclick="Localize.translate('en')">English</button>
-  <button onclick="Localize.translate('fr')">Fran&#231;ais</button>
-  <button onclick="Localize.translate('es')">Espa&#241;ol</button>
+  <div class="window-centered">
+    <h1>Localize.js</h1>
+    <p translate="example.body"></p>
+    <button onclick="langHandler(this,'en')">English</button>
+    <button onclick="langHandler(this,'fr')">Fran&#231;ais</button>
+    <button onclick="langHandler(this,'es')">Espa&#241;ol</button>
+  </div>
+
   <script src="../localize.js" path="translations/" default-lang="en"></script>
+
+  <script>
+    function langHandler(clickedButton, lang) {
+      // Run the localization function with the chosen language
+      Localize.translate(lang);
+
+      // Do some fancy animations, skip the jQuery
+      var nodes = document.querySelectorAll('[translate]');
+      for (var i = 0; i < nodes.length; i++) {
+        nodes[i].className = 'hidden';
+      }
+      setTimeout(function() {
+        for (var i = 0; i < nodes.length; i++) {
+          nodes[i].className = 'fade-in';
+        }
+      }, 100);
+
+      var buttons = document.getElementsByTagName('button');
+      for (var i = 0; i < buttons.length; i++) {
+          buttons[i].removeAttribute('disabled');
+      }
+      clickedButton.setAttribute('disabled', true);
+    }
+  </script>
 </body>
 </html>
