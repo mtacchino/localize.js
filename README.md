@@ -65,6 +65,6 @@ The default language that will be displayed when a user reaches the page. By def
   <script src="/path/to/localize.js" default-lang="en"></script>
 ```
 
-## Additional Info
+## Locales with Country Codes
 
 localize.js supports locales with country codes (eg. `en-CA`). If a locale with a country code is not found in a JSON translation file, localize.js will look for the language without country code. For example, if `en-CA.json` could not be found, it will check for `en.json` before failing.
