@@ -18,20 +18,24 @@
   <script>
     function langHandler(clickedButton, lang) {
       // Run the localization function with the chosen language
-      Localize.translate(lang);
+      Localize.translate(lang)
+        .then(function() {
+          setTimeout(function() {
+            for (var i = 0; i < nodes.length; i++) {
+              nodes[i].className = 'fade-in';
+            }
+          }, 100);
+        })
+        .catch(function(err) {
+          console.log("Something went wrong... %s", err);
+        });
 
       // Do some fancy animations, skip the jQuery
-      var nodes = document.querySelectorAll('[translate]');
+      var nodes = document.querySelectorAll('[translate]'),
+          buttons = document.getElementsByTagName('button');
       for (var i = 0; i < nodes.length; i++) {
         nodes[i].className = 'hidden';
       }
-      setTimeout(function() {
-        for (var i = 0; i < nodes.length; i++) {
-          nodes[i].className = 'fade-in';
-        }
-      }, 100);
-
-      var buttons = document.getElementsByTagName('button');
       for (var i = 0; i < buttons.length; i++) {
           buttons[i].removeAttribute('disabled');
       }
