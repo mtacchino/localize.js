@@ -14,19 +14,19 @@ var Localize = (function() {
    */
   function translate(lang) {
     var translationLang = lang || navigator.language || navigator.userLanguage || (navigator.languages ? navigator.languages[0] : defaultLang),
-        elems = Array.prototype.slice.call(document.querySelectorAll('[' + keyword + ']'));
+        elems = document.querySelectorAll('[' + keyword + ']');
 
     if (Localize) {
       Localize.currentLang = lang;
     }
-    
+
     getTranslations(translationLang, function(translations) {
-      elems.forEach(function(elem) {
-        var key = elem.getAttribute(keyword);
+      for (var i = 0; i < elems.length; i++) {
+        var key = elems[i].getAttribute(keyword);
         if (translations[key]) {
-          elem.innerHTML = translations[key];
+          elems[i].innerHTML = translations[key];
         }
-      });
+      }
     });
   };
 
