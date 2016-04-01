@@ -33,6 +33,14 @@ JSON files should have a basic key-value structure like:
 }
 ```
 
+The `translate` function returns a Promise, so you can chain together functions when it is complete:
+```javascript
+Localize.translate("en")
+  .then(function(){
+    console.log("Done localizing!");
+  });
+```
+
 See the [example](https://github.com/mtacchino/localize.js/tree/master/example) folder for a demo.
 
 ## Attribute Options
