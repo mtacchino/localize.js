@@ -5,7 +5,9 @@ var Localize = (function() {
 
     var keyword = localizeScript.getAttribute('keyword') || 'translate',
         path = localizeScript.getAttribute('path') || '/translations/',
-        defaultLang = localizeScript.getAttribute('default-lang') || 'en',
+        defaultLang = localizeScript.getAttribute('default-lang'),
+        init = !(localizeScript.getAttribute('init-loc') && JSON.parse(localizeScript.getAttribute('init-loc')) === false),
+        backupLang = 'en';
         translations = {};
 
   /**
@@ -14,7 +16,7 @@ var Localize = (function() {
    * @returns {Promise}
    */
   function translate(lang) {
-    var translationLang = lang || navigator.language || navigator.userLanguage || (navigator.languages ? navigator.languages[0] : defaultLang),
+    var translationLang = lang || navigator.language || navigator.userLanguage || (navigator.languages ? navigator.languages[0] : defaultLang) || backupLang,
         elems = document.querySelectorAll('[' + keyword + ']');
 
     if (Localize) {
@@ -72,7 +74,10 @@ var Localize = (function() {
     });
   }
 
-  translate(defaultLang);
+  if (init) {
+    translate(defaultLang);
+  }
+
   return {
     translate: translate,
     currentLang: defaultLang
