@@ -15,7 +15,7 @@ Or simply add the script at the bottom of your html page:
 ## Basic Usage
 If you are using npm to require Localise.js, pass options within the `require`. See Attribute Options below for possible arguments
 ```
-var localize = require('localize.js')(options)
+var localize = require('localize-js')(options)
 ```
 
 In your HTML, add a `translate` attribute along with an identifying key to all of the elements that need to be translated. Call the `Localize.translate(language)` function to translate the page:
@@ -63,7 +63,12 @@ See the [example](https://github.com/mtacchino/localize.js/tree/master/example) 
 ### keyword
 
 This identifies the translate keyword to used in the page. The default is `translate`. For example:
-
+```
+require('localize-js')({
+  keyword: 't'
+});
+```
+OR
 ```html
 <body>
   <p t="example.key"></p>
@@ -74,25 +79,40 @@ This identifies the translate keyword to used in the page. The default is `trans
 ### path
 
 This is the path in which to find the translations. The default is `/translations/`. Note that the path is relative to the current page.
-
+```
+require('localize-js')({
+  path: '/path/to/translations/'
+});
+```
+OR
 ```html
-  <script src="/path/to/localize.js" path="/path/to/translations/"></script>
+<script src="/path/to/localize.js" path="/path/to/translations/"></script>
 ```
 
 ### default-lang
 
 The default language that will be displayed when a user reaches the page. By default, localize.js will use the browser language retrieved from `window.navigator` when `default-lang` is not specified.
-
+```
+require('localize-js')({
+  defaultLang: 'en'
+});
+```
+OR
 ```html
-  <script src="/path/to/localize.js" default-lang="en"></script>
+<script src="/path/to/localize.js" default-lang="en"></script>
 ```
 
 ### init-loc
 
 Boolean representing whether or not to initialize translation on page load. Defaults to `true`.
-
+```
+require('localize-js')({
+  initLoc: true
+});
+```
+OR
 ```html
-  <script src="/path/to/localize.js" init-loc="false"></script>
+<script src="/path/to/localize.js" init-loc="false"></script>
 ```
 
 ## Locales with Country Codes
