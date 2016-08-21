@@ -1,8 +1,24 @@
 # localize.js
 An easy-to-use client-side javascript plugin for localizing/translating/internationalizing your website. Languages are lazy-loaded so only the required language is retrieved when it's needed. No dependencies required.
 
+## Installation
+Using npm:
+```
+npm install localise-js
+```
+
+Or simply add the script at the bottom of your html page:
+```
+<script src="/path/to/localize.js"></script>
+```
+
 ## Basic Usage
-Insert the localize.js script at the bottom of your HTML file. In your HTML, add a `translate` attribute along with an identifying key to all of the elements that need to be translated. Call the `Localize.translate(language)` function to translate the page:
+If you are using npm to require Localise.js, pass options within the `require`. See Attribute Options below for possible arguments
+```
+var localize = require('localize.js')(options)
+```
+
+In your HTML, add a `translate` attribute along with an identifying key to all of the elements that need to be translated. Call the `Localize.translate(language)` function to translate the page:
 
 ```html
 <body>
@@ -11,7 +27,6 @@ Insert the localize.js script at the bottom of your HTML file. In your HTML, add
   <button onclick="Localize.translate('en')">English</button>
   <button onclick="Localize.translate('fr')">French</button>
   <button onclick="Localize.translate('de')">German</button>
-  <script src="/path/to/localize.js"></script>
 </body>
 ```
 Now in your root directory, create a new directory called `translations`, and add all of your translations to JSON files for loading. The directory listing should look something like:
@@ -44,7 +59,6 @@ Localize.translate("en")
 See the [example](https://github.com/mtacchino/localize.js/tree/master/example) folder for a demo.
 
 ## Attribute Options
-There are three attributes which can be included in the script tag:
 
 ### keyword
 

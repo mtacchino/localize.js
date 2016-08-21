@@ -1,0 +1,16 @@
+{
+  "name": "localize-js",
+  "version": "1.0.3",
+  "description": "client-side translations",
+  "main": "localize.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtacchino/localize.js.git"
+  },
+  "author": "Matt Tacchino <matt@tacchino.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mtacchino/localize.js/issues"
+  },
+  "homepage": "https://github.com/mtacchino/localize.js#readme"
+}
