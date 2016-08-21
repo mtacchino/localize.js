@@ -4,7 +4,7 @@ An easy-to-use client-side javascript plugin for localizing/translating/internat
 ## Installation
 Using npm:
 ```
-npm install localise-js
+npm install localize-js
 ```
 
 Or simply add the script at the bottom of your html page:
