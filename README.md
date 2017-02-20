@@ -13,7 +13,7 @@ Or simply add the script at the bottom of your html page:
 ```
 
 ## Basic Usage
-If you are using npm to require Localise.js, pass options within the `require`. See Attribute Options below for possible arguments
+If you are using npm to require Localize.js, pass options within the `require`. See Attribute Options below for possible arguments
 ```
 var localize = require('localize-js')(options)
 ```
@@ -37,7 +37,7 @@ Now in your root directory, create a new directory called `translations`, and ad
 |   ├── en.json
 |   ├── fr.json
 |   ├── ru.json
-|   └── en-UK.json
+|   └── en-GB.json
 </pre>
 
 JSON files should have a basic key-value structure like:
