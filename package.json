@@ -2,7 +2,7 @@
   "name": "localize-js",
   "version": "1.0.3",
   "description": "client-side translations",
-  "main": "localize.js",
+  "main": "localize.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mtacchino/localize.js.git"
@@ -12,5 +12,20 @@
   "bugs": {
     "url": "https://github.com/mtacchino/localize.js/issues"
   },
-  "homepage": "https://github.com/mtacchino/localize.js#readme"
+  "homepage": "https://github.com/mtacchino/localize.js#readme",
+  "scripts": {
+    "test": "karma start",
+    "build": "webpack",
+    "clean": "rm -rf dist",
+    "deploy": "npm run test && npm run clean && npm run build && echo 'no deploy yet'"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.5.0",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-mocha": "^1.3.0",
+    "mocha": "^3.2.0",
+    "webpack": "^2.2.1"
+  }
 }
