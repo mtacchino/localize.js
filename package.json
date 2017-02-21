@@ -16,7 +16,8 @@
   "scripts": {
     "test": "karma start",
     "build": "webpack",
-    "deploy": "echo 'not implemented'"
+    "clean": "rm -rf dist",
+    "deploy": "npm run test && npm run clean && npm run build && echo 'no deploy yet'"
   },
   "devDependencies": {
     "jasmine-core": "^2.5.2",
