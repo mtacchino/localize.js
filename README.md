@@ -1,4 +1,5 @@
 # localize.js
+[![Build Status](https://travis-ci.org/mtacchino/localize.js.svg?branch=master)](https://travis-ci.org/mtacchino/localize.js?branch=master)
 An easy-to-use client-side javascript plugin for localizing/translating/internationalizing your website. Languages are lazy-loaded so only the required language is retrieved when it's needed. No dependencies required.
 
 ## Installation
