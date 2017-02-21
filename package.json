@@ -15,7 +15,8 @@
   "homepage": "https://github.com/mtacchino/localize.js#readme",
   "scripts": {
     "test": "karma start",
-    "build": "webpack --optimize-minimize"
+    "build": "webpack",
+    "deploy": "echo 'not implemented'"
   },
   "devDependencies": {
     "jasmine-core": "^2.5.2",
