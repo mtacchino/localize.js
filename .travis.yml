@@ -12,7 +12,6 @@ install:
 - npm install -g yarn
 - yarn upgrade
 script:
-- yarn run test
 - yarn run deploy
 deploy:
   api_key:
