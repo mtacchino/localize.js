@@ -11,8 +11,7 @@ before_install:
 install:
 - npm install -g yarn
 - yarn upgrade
-script:
-- yarn run deploy
+- yarn run build
 deploy:
   provider: npm
   email: "matt@tacchino.me"

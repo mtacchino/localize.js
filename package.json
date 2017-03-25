@@ -19,11 +19,11 @@
   "scripts": {
     "test": "karma start --single-run",
     "test:watch": "karma start",
-    "build": "yarn run build:dev && yarn run build:prod",
+    "build": "yarn run clean && yarn run build:dev && yarn run build:prod",
     "build:dev": "webpack",
     "build:prod": "NODE_ENV=production webpack",
     "clean": "rm -rf dist",
-    "deploy": "yarn run clean && yarn run build && npm publish"
+    "deploy": "yarn run build && npm publish"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
