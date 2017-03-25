@@ -1,19 +1,20 @@
 sudo: false
 language: node_js
 node_js:
-  - "6"
-
+- '6'
 cache:
   directories:
-    - node_modules
-    
+  - node_modules
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 install:
-  - npm install -g yarn
-  - yarn install
-
+- npm install -g yarn
+- yarn upgrade
 script:
-  - npm run deploy
+- yarn run build
+deploy:
+  provider: npm
+  email: "matt@tacchino.me"
+  api_key:
+    secure: wg5jrIHwZZrh0D4Ial+Y0yi4nv/0BYI93Z8nrmvKyyylOz4xghMpXRcavkHYEvR+Nrk9fLTV6DaSbb9M2p6C9gusazSWmyUfOhVuQ01T/2Vt4gcYq0vyHz4Dwtaj/v0lqP0egofprRrfZNb5gSnc6TmjAM+wbUa4aRcGv8BphraH60ZKvr/cN+2Ku+wVWEnEdOz0BGRD9gAJSW1mY2Cvc/fvjXZkD44HsSh83ZMR4xo0x5Ho/mn0uzNIUh3Rbc0ojPgvL9k9afoy56AtLrFh3es4oRsm3yqnm2hTmUgSUY7B66+SDKPdMtvpeSDSH51q2SHBLZ1rzVFHKrEkB97xqXVgu7b+aFpIvbLhyVAcUayaFfXCK8YdXTLOUKd15JZ5vdjQhx3u6/aOVvQdq5ieHnxt2Pbybb1JYe6UxhOV6n7IQsMJ3A0HPH3LWQbpbIPRbtMOmLCMhcwfLmZ06BDOZ/358csZvvmb2k7WllH9CyHYlkVBusyLAub2arEiiHRMLrGZnsRYBtadY5nL3gor9VratK6zlv7C//36F3wHh0hELk8w1XQ/+e9oGPswAt1cVjUC7T7T0MD5ji6Fuykk3a5LJtmd4G6m49HORDf72LZCpUNsDcjdPQYu/+Wp3CGMOoFs2eFkaMNf57fACaW34LxqJkCot4AAYZzs8h+Rurw=

@@ -1,6 +1,6 @@
 # localize.js
 [![Build Status](https://travis-ci.org/mtacchino/localize.js.svg?branch=master)](https://travis-ci.org/mtacchino/localize.js?branch=master)
-
+[![npm version](https://badge.fury.io/js/localize-js.svg)](https://badge.fury.io/js/localize-js)
 
 An easy-to-use client-side javascript plugin for localizing/translating/internationalizing your website. Languages are lazy-loaded so only the required language is retrieved when it's needed. No dependencies required.
 
@@ -10,9 +10,9 @@ Using npm:
 npm install localize-js
 ```
 
-Or simply add the script at the bottom of your html page:
+Or simply add the script in the `dist` folder at the bottom of your html page:
 ```
-<script src="/path/to/localize.js"></script>
+<script src="/path/to/localize.min.js"></script>
 ```
 
 ## Basic Usage
@@ -21,18 +21,16 @@ If you are using npm to require Localize.js, pass options within the `require`. 
 var localize = require('localize-js')(options)
 ```
 
-In your HTML, add a `translate` attribute along with an identifying key to all of the elements that need to be translated. Call the `Localize.translate(language)` function to translate the page:
+In your HTML, add a `translate` attribute along with an identifying key to all of the elements that need to be translated. Call the `localize.translate(language)` function to translate the page:
 
 ```html
 <body>
   <h1 translate="mypage.header"></h1>
   <p translate="mypage.paragraph"></p>
-  <button onclick="Localize.translate('en')">English</button>
-  <button onclick="Localize.translate('fr')">French</button>
-  <button onclick="Localize.translate('de')">German</button>
+  <script>localize.translate('en')</script>
 </body>
 ```
-Now in your root directory, create a new directory called `translations`, and add all of your translations to JSON files for loading. The directory listing should look something like:
+Translations should be in JSON format. You can specify the directory to look for translations in the [Attribute Options](#Attribute-Options). By default this is `/translations/`
 <pre>
 .
 ├── index.html
@@ -53,7 +51,7 @@ JSON files should have a basic key-value structure like:
 
 The `translate` function returns a Promise, so you can chain together functions when it is complete:
 ```javascript
-Localize.translate("en")
+localize.translate("en")
   .then(function(){
     console.log("Done localizing!");
   });
@@ -63,60 +61,37 @@ See the [example](https://github.com/mtacchino/localize.js/tree/master/example) 
 
 ## Attribute Options
 
-### keyword
-
-This identifies the translate keyword to used in the page. The default is `translate`. For example:
+Pass an optional `options` object when requiring the localize-js plugin
 ```
-require('localize-js')({
+var localize = require('localize-js')({
   keyword: 't'
+  path: '/my/translations/folder/',
+  defaultLang: 'en',
+  initLoc: false
 });
 ```
-OR
+or in your html
 ```html
 <body>
-  <p t="example.key"></p>
-  <script src="/path/to/localize.js" keyword="t"></script>
+  <script src="/path/to/localize.js" keyword="t" path="/my/translations/folder/" default-lang="en" init-loc="false"></script>
 </body>
 ```
 
+### keyword
+
+This identifies the translate keyword to used in the page. The default is `translate`. For example:
+
 ### path
 
-This is the path in which to find the translations. The default is `/translations/`. Note that the path is relative to the current page.
-```
-require('localize-js')({
-  path: '/path/to/translations/'
-});
-```
-OR
-```html
-<script src="/path/to/localize.js" path="/path/to/translations/"></script>
-```
+This is the path in which to find the translations. The default is `/translations/`.
 
 ### default-lang
 
 The default language that will be displayed when a user reaches the page. By default, localize.js will use the browser language retrieved from `window.navigator` when `default-lang` is not specified.
-```
-require('localize-js')({
-  defaultLang: 'en'
-});
-```
-OR
-```html
-<script src="/path/to/localize.js" default-lang="en"></script>
-```
 
 ### init-loc
 
 Boolean representing whether or not to initialize translation on page load. Defaults to `true`.
-```
-require('localize-js')({
-  initLoc: true
-});
-```
-OR
-```html
-<script src="/path/to/localize.js" init-loc="false"></script>
-```
 
 ## Locales with Country Codes
 

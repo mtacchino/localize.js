@@ -1,12 +1,12 @@
 (function _attachToClient() {
     if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-        module.exports = Localize;
+        module.exports = localize;
     }
     else {
-        var scripts = document.getElementsByTagName('script'),
-            localizeScript = scripts[scripts.length - 1];
+        const scripts = document.getElementsByTagName('script'),
+              localizeScript = scripts[scripts.length - 1];
             
-        Localize({
+        localize({
             keyword: localizeScript.getAttribute('keyword'),
             path: localizeScript.getAttribute('path'),
             defaultLang: localizeScript.getAttribute('default-lang'),
@@ -15,8 +15,8 @@
     }
 })();
 
-function Localize(options) {
-    var module = {},
+function localize(options) {
+    let module = {},
         backupLang = 'en',
         translations = {};
 
@@ -25,7 +25,7 @@ function Localize(options) {
     }
     options.keyword = options.keyword || 'translate';
     options.path = options.path || '/translations/';
-    options.defaultLang = options.defaultLang || navigator.language || navigator.userLanguage || (navigator.languages ? navigator.languages[0] : backupLang);
+    options.defaultLang = options.defaultLang || window.navigator.language || window.navigator.userLanguage || (window.navigator.languages ? window.navigator.languages[0] : backupLang);
     options.init = options.init || true;
 
 
@@ -34,13 +34,13 @@ function Localize(options) {
      * @param {String} lang
      * @returns {Promise}
      */
-    module.translate = function(lang) {
-      var elems = document.querySelectorAll('[' + options.keyword + ']');
+    module.translate = (lang) => {
+      let elems = document.querySelectorAll('[' + options.keyword + ']');
 
       return getTranslations(lang)
-        .then(function(translations) {
-          for (var i = 0; i < elems.length; i++) {
-            var key = elems[i].getAttribute(options.keyword);
+        .then((translations) => {
+          for (let i = 0; i < elems.length; i++) {
+            const key = elems[i].getAttribute(options.keyword);
             if (translations[key]) {
               elems[i].innerHTML = translations[key];
             }
@@ -63,12 +63,13 @@ function Localize(options) {
           return;
         }
 
-        var xhttp = new XMLHttpRequest();
+        const xhttp = new XMLHttpRequest();
         xhttp.open("GET", options.path + lang + ".json", true);
         xhttp.send();
-        var retry = true;
+        let retry = true;
 
         xhttp.onreadystatechange = function() {
+
           if (xhttp.readyState == 4) {
             if (xhttp.status == 404 && retry) {
               if (lang.length > 2) {
@@ -97,7 +98,7 @@ function Localize(options) {
     }
 
     if (window) {
-        window.Localize = module;
+        window.localize = module;
     }
     
     return module;
