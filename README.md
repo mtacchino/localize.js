@@ -16,7 +16,7 @@ Or simply add the script in the `dist` folder at the bottom of your html page:
 ```
 
 ## Basic Usage
-If you are using npm to require Localise.js, pass options within the `require`. See Attribute Options below for possible arguments
+If you are using npm to require Localize.js, pass options within the `require`. See Attribute Options below for possible arguments
 ```
 var localize = require('localize-js')(options)
 ```
@@ -38,7 +38,7 @@ Translations should be in JSON format. You can specify the directory to look for
 |   ├── en.json
 |   ├── fr.json
 |   ├── ru.json
-|   └── en-UK.json
+|   └── en-GB.json
 </pre>
 
 JSON files should have a basic key-value structure like:
